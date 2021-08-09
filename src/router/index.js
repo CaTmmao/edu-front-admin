@@ -90,13 +90,21 @@ export const constantRoutes = [
                 name: '讲师列表',
                 component: () => import('@/views/teacher/list'),
                 meta: {title: '讲师列表', icon: 'table'}
+            },
+            {
+                path: 'add',
+                name: '添加讲师',
+                component: () => import('@/views/teacher/add'),
+                meta: {title: '添加讲师', icon: 'table'}
+            },
+            {
+                path: 'edit/:id',
+                name: '编辑讲师',
+                component: () => import('@/views/teacher/add'),
+                meta: {title: '编辑讲师', icon: 'table'},
+                // 是否在侧边栏隐藏
+                hidden: true
             }
-            // {
-            //     path: 'add',
-            //     name: '添加讲师',
-            //     component: () => import('@/views/teacher/add'),
-            //     meta: {title: '添加讲师', icon: 'tree'}
-            // }
         ]
     },
 

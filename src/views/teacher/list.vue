@@ -172,6 +172,19 @@ export default {
               this.list.splice(index, 1);
             })
       })
+    },
+
+    /**
+     * 编辑讲师信息
+     * @param item 讲师信息
+     */
+    edit(item) {
+      this.$router.push({
+        path: `/teacher/edit/${item.id}`,
+        query: {
+          data: item
+        }
+      })
     }
   }
 }

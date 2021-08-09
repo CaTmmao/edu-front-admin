@@ -26,5 +26,32 @@ export default {
             url: `teacher/${id}`,
             method: 'delete'
         })
+    },
+
+    /**
+     * 更新讲师信息
+     * @param id 讲师ID
+     * @param data 讲师信息
+     * @return {AxiosPromise} 是否成功
+     */
+    updateTeacherById(id, data) {
+        return request({
+            url: `teacher/${id}`,
+            method: 'patch',
+            data
+        })
+    },
+
+    /**
+     * 添加讲师
+     * @param data 讲师信息
+     * @return {AxiosPromise} 是否成功
+     */
+    addTeacher(data) {
+        return request({
+            url: 'teacher',
+            method: 'post',
+            data
+        })
     }
 }
