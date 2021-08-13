@@ -182,7 +182,7 @@ export default {
       this.$router.push({
         path: `/teacher/edit/${item.id}`,
         query: {
-          data: item
+          data: JSON.stringify(item)
         }
       })
     }
