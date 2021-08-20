@@ -145,7 +145,7 @@ export default {
       if (params && params.id) {
         this.teacherInfo = JSON.parse(query.data)
       } else {
-        this.teacherInfo = teacherInfo
+        this.teacherInfo = {...teacherInfo}
       }
     },
 
