@@ -1,5 +1,8 @@
 import request from '@/utils/request'
 
+// 接口前缀
+const urlPrefix = 'service/teacher'
+
 export default {
     /**
      * 获取分页后的讲师列表（可筛选条件）
@@ -10,9 +13,20 @@ export default {
      */
     getTeachersListWithPageAndCondition(pageNum, pageSize, data) {
         return request({
-            url: `teacher/teachers/condition?pageSize=${pageSize}&pageNum=${pageNum}`,
+            url: `${urlPrefix}/teachers/condition?pageSize=${pageSize}&pageNum=${pageNum}`,
             method: 'post',
             data
+        })
+    },
+
+    /**
+     * 获取所有讲师
+     * @return {AxiosPromise} 所有讲师
+     */
+    getTeacherList() {
+        return request({
+            url: `${urlPrefix}/all`,
+            method: 'get'
         })
     },
 
@@ -23,7 +37,7 @@ export default {
      */
     deleteTeacherById(id) {
         return request({
-            url: `teacher/${id}`,
+            url: `${urlPrefix}/${id}`,
             method: 'delete'
         })
     },
@@ -36,7 +50,7 @@ export default {
      */
     updateTeacherById(id, data) {
         return request({
-            url: `teacher/${id}`,
+            url: `${urlPrefix}/${id}`,
             method: 'patch',
             data
         })
@@ -49,24 +63,9 @@ export default {
      */
     addTeacher(data) {
         return request({
-            url: 'teacher',
+            url: urlPrefix,
             method: 'post',
             data
         })
-    },
-
-    /**
-     * 上传图片
-     * @param file 图片
-     * @return {AxiosPromise} 图片存在oss上的地址
-     */
-    uploadPhoto(file) {
-        return request({
-            url: 'oss/file',
-            method: 'post',
-            data: file,
-            headers:{'Content-Type':'multipart/form-data'}
-        })
     }
-
 }

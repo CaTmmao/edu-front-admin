@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import api from '@/api/teacher';
+import teacherApi from '@/api/teacher';
+import ossApi from '@/api/oss';
 import Upload from '@/components/Upload/index';
 
 // 讲师信息
@@ -108,7 +109,7 @@ export default {
      * @param data 讲师信息
      */
     addTeacher(data) {
-      api.addTeacher(data)
+      teacherApi.addTeacher(data)
           .then(() => {
             this.$message({
               type: 'success',
@@ -125,7 +126,7 @@ export default {
      * @param data 讲师信息
      */
     updateTeacherById(id, data) {
-      api.updateTeacherById(id, data)
+      teacherApi.updateTeacherById(id, data)
           .then(() => {
             this.$message({
               type: 'success',
@@ -157,7 +158,7 @@ export default {
       const formData = new FormData();
       formData.append('file', file)
 
-      await api.uploadPhoto(formData)
+      await ossApi.uploadPhoto(formData)
           .then(res => {
             let {url} = res.data
             this.teacherInfo.avatar = url
