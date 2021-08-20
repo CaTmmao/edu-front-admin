@@ -52,7 +52,7 @@ export default {
     handleChange(file) {
     let {url} = file
       this.url = url
-      this.$emit('url-change', file.url);
+      this.$emit('url-change', url);
     }
   }
 }
