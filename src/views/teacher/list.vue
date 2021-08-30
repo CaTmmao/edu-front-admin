@@ -32,7 +32,7 @@
         />
       </el-form-item>
 
-      <el-button type="primary" icon="el-icon-search" @click="getTeachersListWithPageAndCondition()">查询</el-button>
+      <el-button type="primary" icon="el-icon-search" @click="getTeacherListWithPageAndCondition()">查询</el-button>
       <el-button type="default" @click="resetData()">重置</el-button>
     </el-form>
 
@@ -71,7 +71,7 @@
         <template slot-scope="scope">
           <el-button
               size="mini"
-              @click="edit(scope.row)">修改
+              @click="editTeacher(scope.row)">修改
           </el-button>
           <el-button
               size="mini"
@@ -89,7 +89,7 @@
         :total="totalPage"
         style="padding: 30px 0; text-align: center;"
         layout="total, prev, pager, next, jumper"
-        @current-change="getTeachersListWithPageAndCondition"
+        @current-change="getTeacherListWithPageAndCondition"
     />
   </div>
 </template>
@@ -122,7 +122,7 @@ export default {
     }
   },
   created() {
-    this.getTeachersListWithPageAndCondition();
+    this.getTeacherListWithPageAndCondition();
   },
   methods: {
     /**
@@ -130,12 +130,12 @@ export default {
      * @param pageNum 当前第几页，从 1 开始
      * @return 讲师列表
      */
-    getTeachersListWithPageAndCondition(pageNum = 1) {
+    getTeacherListWithPageAndCondition(pageNum = 1) {
       this.listLoading = true
       this.pageNum = pageNum
 
       let {pageSize, condition} = this
-      api.getTeachersListWithPageAndCondition(pageNum, pageSize, condition)
+      api.getTeacherListWithPageAndCondition(pageNum, pageSize, condition)
           .then(res => {
             this.list = res.data
             this.totalPage = res.totalPage
@@ -148,7 +148,7 @@ export default {
      */
     resetData() {
       this.condition = {}
-      this.getTeachersListWithPageAndCondition();
+      this.getTeacherListWithPageAndCondition();
     },
 
     /**
@@ -178,7 +178,7 @@ export default {
      * 编辑讲师信息
      * @param item 讲师信息
      */
-    edit(item) {
+    editTeacher(item) {
       this.$router.push({
         path: `/teacher/edit/${item.id}`,
         query: {
