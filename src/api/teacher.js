@@ -11,7 +11,7 @@ export default {
      * @param data 筛选条件
      * @return {AxiosPromise} 讲师列表
      */
-    getTeachersListWithPageAndCondition(pageNum, pageSize, data) {
+    getTeacherListWithPageAndCondition(pageNum, pageSize, data) {
         return request({
             url: `${urlPrefix}/teachers/condition?pageSize=${pageSize}&pageNum=${pageNum}`,
             method: 'post',
