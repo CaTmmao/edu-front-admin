@@ -86,9 +86,9 @@
     <el-pagination
         :current-page="pageNum"
         :page-size="pageSize"
-        :total="totalPage"
+        :total="total"
         style="padding: 30px 0; text-align: center;"
-        layout="total, prev, pager, next, jumper"
+        layout="prev, pager, next, jumper"
         @current-change="getTeacherListWithPageAndCondition"
     />
   </div>
@@ -106,6 +106,8 @@ export default {
       pageSize: 10,
       // 当前第几页，从 1 开始
       pageNum: 1,
+      // 共有多少条
+      total: 0,
       // 共有多少页
       totalPage: null,
       // 分页时可筛选条件
@@ -139,6 +141,7 @@ export default {
           .then(res => {
             this.list = res.data
             this.totalPage = res.totalPage
+            this.total= res.total
             this.listLoading = false
           })
     },
