@@ -21,7 +21,10 @@
       </el-form-item>
 
       <el-form-item label="讲师头像">
-        <upload :img-url="teacherInfo.avatar" v-on:file-change="handleAvatarFileChange"
+        <upload :img-url="teacherInfo.avatar"
+                tips="更换头像"
+                height="148px" width="148px"
+                v-on:file-change="handleAvatarFileChange"
                 v-on:url-change="handleAvatarChange"></upload>
       </el-form-item>
 
@@ -35,7 +38,7 @@
 <script>
 import teacherApi from '@/api/teacher';
 import ossApi from '@/api/oss';
-import Upload from '@/components/Upload/index';
+import Upload from '@/components/UploadPhoto/index';
 
 // 讲师信息
 const teacherInfo = {
@@ -160,8 +163,7 @@ export default {
 
       await ossApi.uploadPhoto(formData)
           .then(res => {
-            let {url} = res.data
-            this.teacherInfo.avatar = url
+            this.teacherInfo.avatar = res.data
           })
     }
   },

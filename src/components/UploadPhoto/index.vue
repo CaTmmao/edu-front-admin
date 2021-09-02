@@ -2,6 +2,10 @@
 <template>
   <div>
     <div class="upload">
+      <div class="img-wrapper">
+        <img :src="url" alt="" :style="imgWidthAndHeightCss">
+        <el-button size="small" type="primary" @click="showUploadDialog">{{ tips }}</el-button>
+      </div>
       <el-upload
           v-show="false"
           action="#"
@@ -10,11 +14,6 @@
           :show-file-list="false"
           :on-change="handleChange">
       </el-upload>
-
-      <div class="img-wrapper">
-        <img :src="url" alt="">
-        <el-button size="small" type="primary" @click="showUploadDialog">更换头像</el-button>
-      </div>
     </div>
   </div>
 </template>
@@ -22,7 +21,39 @@
 <script>
 export default {
   // 接受父组件的值
-  props: ['imgUrl'],
+  props: {
+    // 图片地址
+    imgUrl: {
+      type: String
+    },
+    // 图片宽度
+    width: {
+      type: String
+    },
+    // 图片高度
+    height: {
+      type: String
+    },
+    // 上传图片按钮的提示信息
+    tips: {
+      type: String
+    },
+    // 图片上传之前的验证方法
+    checkPhotoIfValid: {
+      type: Function,
+      default() {
+        return () => {
+          return true
+        }
+      }
+    }
+  },
+  computed: {
+    // 设置图片的长度和宽度
+    imgWidthAndHeightCss() {
+      return `height: ${this.height}; width: ${this.width}`
+    }
+  },
   data() {
     return {
       url: ''
@@ -50,9 +81,11 @@ export default {
     },
 
     handleChange(file) {
-    let {url} = file
-      this.url = url
-      this.$emit('url-change', url);
+      if (this.checkPhotoIfValid(file)) {
+        let {url} = file
+        this.url = url
+        this.$emit('url-change', url);
+      }
     }
   }
 }
@@ -67,8 +100,6 @@ export default {
     img {
       margin-top: 20px;
       margin-right: 20px;
-      width: 148px;
-      height: 148px;
     }
   }
 }
