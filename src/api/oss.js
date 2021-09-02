@@ -10,8 +10,7 @@ export default {
         return request({
             url: 'oss/file',
             method: 'post',
-            data: file,
-            headers: {'Content-Type': 'multipart/form-data'}
+            data: file
         })
     }
 }
