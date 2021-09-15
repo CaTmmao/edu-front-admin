@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
-Vue.use(Router)
-
 /* Layout */
 import Layout from '@/layout'
+
+Vue.use(Router)
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -55,28 +54,6 @@ export const constantRoutes = [
         }]
     },
 
-    {
-        path: '/example',
-        component: Layout,
-        redirect: '/example/table',
-        name: 'Example',
-        meta: {title: 'Example', icon: 'el-icon-s-help'},
-        children: [
-            {
-                path: 'table',
-                name: 'Table',
-                component: () => import('@/views/table/index'),
-                meta: {title: 'Table', icon: 'table'}
-            },
-            {
-                path: 'tree',
-                name: 'Tree',
-                component: () => import('@/views/tree/index'),
-                meta: {title: 'Tree', icon: 'tree'}
-            }
-        ]
-    },
-
     // 讲师管理
     {
         path: '/teacher',
@@ -108,85 +85,39 @@ export const constantRoutes = [
         ]
     },
 
+    // 课程管理
     {
-        path: '/form',
+        path: '/course',
         component: Layout,
+        redirect: '/course/list',
+        name: '课程管理',
+        meta: {title: '课程管理', icon: 'el-icon-s-help'},
         children: [
             {
-                path: 'index',
-                name: 'Form',
-                component: () => import('@/views/form/index'),
-                meta: {title: 'Form', icon: 'form'}
-            }
-        ]
-    },
-
-    {
-        path: '/nested',
-        component: Layout,
-        redirect: '/nested/menu1',
-        name: 'Nested',
-        meta: {
-            title: 'Nested',
-            icon: 'nested'
-        },
-        children: [
-            {
-                path: 'menu1',
-                component: () => import('@/views/nested/menu1/index'), // Parent router-view
-                name: 'Menu1',
-                meta: {title: 'Menu1'},
-                children: [
-                    {
-                        path: 'menu1-1',
-                        component: () => import('@/views/nested/menu1/menu1-1'),
-                        name: 'Menu1-1',
-                        meta: {title: 'Menu1-1'}
-                    },
-                    {
-                        path: 'menu1-2',
-                        component: () => import('@/views/nested/menu1/menu1-2'),
-                        name: 'Menu1-2',
-                        meta: {title: 'Menu1-2'},
-                        children: [
-                            {
-                                path: 'menu1-2-1',
-                                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                                name: 'Menu1-2-1',
-                                meta: {title: 'Menu1-2-1'}
-                            },
-                            {
-                                path: 'menu1-2-2',
-                                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                                name: 'Menu1-2-2',
-                                meta: {title: 'Menu1-2-2'}
-                            }
-                        ]
-                    },
-                    {
-                        path: 'menu1-3',
-                        component: () => import('@/views/nested/menu1/menu1-3'),
-                        name: 'Menu1-3',
-                        meta: {title: 'Menu1-3'}
-                    }
-                ]
+                path: 'list',
+                name: '课程列表',
+                component: () => import('@/views/course/list'),
+                meta: {title: '课程列表', icon: 'table'}
             },
             {
-                path: 'menu2',
-                component: () => import('@/views/nested/menu2/index'),
-                name: 'Menu2',
-                meta: {title: 'menu2'}
-            }
-        ]
-    },
-
-    {
-        path: 'external-link',
-        component: Layout,
-        children: [
+                path: 'add',
+                name: '添加课程',
+                component: () => import('@/views/course/add'),
+                meta: {title: '添加课程', icon: 'table'}
+            },
             {
-                path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-                meta: {title: 'External Link', icon: 'link'}
+                path: 'editBaseInfo/:id',
+                name: '编辑课程基本信息',
+                component: () => import('@/views/course/editBaseInfo'),
+                meta: {title: '编辑课程基本信息'},
+                hidden: true
+            },
+            {
+                path: 'editChapterInfo/:id',
+                name: '编辑课程章节信息',
+                component: () => import('@/views/course/editChapterInfo'),
+                meta: {title: '编辑课程章节信息'},
+                hidden: true
             }
         ]
     },
