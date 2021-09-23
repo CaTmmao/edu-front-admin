@@ -54,6 +54,23 @@ export const constantRoutes = [
         }]
     },
 
+     // 分类管理
+     {
+        path: '/category',
+        component: Layout,
+        redirect: '/category/list',
+        name: '分类管理',
+        meta: {title: '分类管理', icon: 'el-icon-s-help'},
+        children: [
+            {
+                path: 'list',
+                name: '分类列表',
+                component: () => import('@/views/category/list'),
+                meta: {title: '分类列表', icon: 'table'}
+            }
+        ]
+    },
+
     // 讲师管理
     {
         path: '/teacher',

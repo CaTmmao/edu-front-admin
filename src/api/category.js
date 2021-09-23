@@ -25,5 +25,31 @@ export default {
             url: `${urlPrefix}/${id}`,
             method: 'get'
         })
-    }
+    },
+
+    // 添加分类
+    addCategory(data) {
+        return request({
+            url: urlPrefix,
+            method: 'post',
+            data
+        })
+    },
+
+    // 删除分类
+    deleteCategoryById(id) {
+        return request({
+            url: `${urlPrefix}/${id}`,
+            method: 'delete'
+        })
+    },
+
+    // 更新分类
+    updateCategory(id, data) {
+        return request({
+            url: `${urlPrefix}/${id}`,
+            method: 'patch',
+            data
+        })
+    },
 }
